@@ -83,6 +83,7 @@ public final class P1HumanAgent extends KeyAdapter implements Agent
     @Override
     public void integrateObservation(Environment environment)
     {	
+    	grabar = true; // siempre se graba
     	if(grabar)Grabador.grabar((MarioEnvironment)environment, Action, fichero);
     }
 

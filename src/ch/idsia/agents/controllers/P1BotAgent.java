@@ -83,7 +83,7 @@ public class P1BotAgent extends BasicMarioAIAgent implements Agent {
     public void integrateObservation(Environment environment) {
         mergeObsr = environment.getMergedObservationZZ(1, 1);
         tick++;
-	grabar = true;
+	grabar = true;//simpre se graba
         if(grabar) {
 	        Grabador.grabar((MarioEnvironment)environment, action, fichero);
 	        if(tick%24 == 0)grabar = false;
