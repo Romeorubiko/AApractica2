@@ -11,11 +11,11 @@ public class Instancia {
 	int merge7_10, merge7_11, merge7_12;
 	int merge6_10, merge6_11, merge6_12;
 	int merge5_10, merge5_11, merge5_12;
-	int reward, reward12, reward24;
-	int distance, distance12, distance24;
+	int reward, reward6, reward12, reward24;
+	int distance, distance6, distance12, distance24;
 	int evaluacion;
-	int marioLevel;
-	
+	int marioMode;
+
 	public Instancia() {
 		
 	}
