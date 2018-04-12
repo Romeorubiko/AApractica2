@@ -83,7 +83,6 @@ public final class P1HumanAgent extends KeyAdapter implements Agent
     @Override
     public void integrateObservation(Environment environment)
     {	
-    	grabar = true; // siempre se graba
     	if(grabar)Grabador.grabar((MarioEnvironment)environment, Action, fichero);
     }
 
@@ -144,7 +143,7 @@ public final class P1HumanAgent extends KeyAdapter implements Agent
                 Action[Mario.KEY_SPEED] = isPressed;
                 break;
         }
-        if(isPressed) {
+       /* if(isPressed) {
         	if (KeyEvent.VK_F4 == keyCode && grabar) {
         		grabar = false; 
 			System.out.println("Grabacion pausada");
@@ -153,7 +152,7 @@ public final class P1HumanAgent extends KeyAdapter implements Agent
 	    		grabar = true; 
 			System.out.println("Grabando...");
 	    	}
-        }
+        }*/
 }
 
 }
