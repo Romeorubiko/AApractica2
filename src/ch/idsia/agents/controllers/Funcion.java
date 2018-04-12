@@ -68,7 +68,7 @@ public class Funcion {
 			}
 			ins.right_jump=valor;
 			
-			pertenece[pertenecia(ins, situaciones)].add(ins);
+			pertenece[pertenecia(ins)].add(ins);
 			line = br.readLine();
 		}
 		System.out.println("Indexado completado:");
