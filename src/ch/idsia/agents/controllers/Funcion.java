@@ -7,14 +7,14 @@ import java.util.LinkedList;
 
 public class Funcion {
 	Instancia situaciones[];
-	LinkedList<Instancia> pertenece [];
+	LinkedList<Instancia> pertenece[];
 	String path;
 	
 	public Funcion() {
 		initSituaciones();
 		pertenece = new LinkedList[4];
-		for (LinkedList<Instancia> linkedList : pertenece) {
-			linkedList = new LinkedList<Instancia>();
+		for (int i = 0; i < pertenece.length; i++) {
+			pertenece[i] = new LinkedList<Instancia>();
 		}
 		
 	}
@@ -23,7 +23,7 @@ public class Funcion {
 	 * devuelve la posicion donde se encuenta la situcacion mas parecida y ademas la guarda en la estructura de datos
 	 */
 	public int pertenecia(Instancia ins) {//todo
-		return 1;
+		return 0;
 	}
 	/**
 	 * devuelve la situacion qeu se parezca más en la lista que se ha pasado como parámetro
@@ -154,15 +154,17 @@ public class Funcion {
 				}
 			}
 			ins.right_jump=valor;
-			
+		
 			pertenece[pertenecia(ins)].add(ins);
 			line = br.readLine();
 		}
-		System.out.println("Indexado completado:");
+		System.out.println("¡Indexado completado!");
 		for (int i = 0; i < pertenece.length; i++) {
 			System.out.println("Coincidencias con situacion "+i+": "+pertenece[i].size());
 		}
 		System.out.println("___________________________________________________________");
+		
+		System.out.println(pertenece[0].get(0).toString());
 
 	}
 	

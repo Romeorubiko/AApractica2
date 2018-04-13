@@ -77,9 +77,9 @@ public class P1BotAgent extends BasicMarioAIAgent implements Agent {
 			pw.println();
 		}
 
-		System.out.println("mark 1");
-		funcion = new Funcion();
-		funcion.indexar("input.arff");
+//		System.out.println("mark 1");
+//		funcion = new Funcion();
+//		funcion.indexar("src\\ch\\idsia\\agents\\controllers\\input.arff");
 	}
 
     public void reset() {

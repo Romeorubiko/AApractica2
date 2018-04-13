@@ -27,14 +27,14 @@ public class Grabador {
 	static int ticks = 0;
 	static int saltoSeguido=0;
 	
-	static Queue<Integer> hace24 = new LinkedList<Integer>();
+	static Queue<Integer> hace24reward = new LinkedList<Integer>();
 	static Queue<Integer> hace24distance = new LinkedList<Integer>();
 	static Queue<boolean[]> action24 = new LinkedList<boolean[]>();
 	static Queue<MarioEnvironment> environments = new LinkedList<MarioEnvironment>();
 	
 	static void grabar(MarioEnvironment e, boolean[] action, FileWriter fichero) {
 		environments.add(e);
-		hace24.add(e.getIntermediateReward());
+		hace24reward.add(e.getIntermediateReward());
 		hace24distance.add(e.getEvaluationInfo().distancePassedCells);
 		action24.add(action);
 		if(ticks < 24) {
@@ -43,7 +43,7 @@ public class Grabador {
 		else {
 			e = environments.poll();
 			action = action24.poll();
-			Queue tempList = new LinkedList<>(hace24);
+			Queue tempList = new LinkedList<>(hace24reward);
 			
 			PrintWriter pw = new PrintWriter(fichero);
 			
@@ -73,7 +73,7 @@ public class Grabador {
 			pw.print(tempList.poll()+",");
 			for (int i = 0; i < 11; i++) tempList.poll();
 			pw.print(tempList.poll()+",");
-			hace24.poll();
+			hace24reward.poll();
 			
 			tempList = new LinkedList<>(hace24distance);
 			for (int i = 0; i < 5; i++) tempList.poll();
