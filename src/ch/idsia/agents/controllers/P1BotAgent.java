@@ -58,6 +58,7 @@ public class P1BotAgent extends BasicMarioAIAgent implements Agent {
     private String path = "P1BotTest.arff";
     private FileWriter fichero;
     private boolean grabar = true;
+    private Funcion funcion;
 
     public P1BotAgent() throws IOException{
 	        super("P1BotAgent");
@@ -75,6 +76,8 @@ public class P1BotAgent extends BasicMarioAIAgent implements Agent {
 			PrintWriter pw = new PrintWriter(fichero);
 			pw.println();
 		}
+		funcion = new Funcion();
+		funcion.indexar("input.arff");
 	}
 
     public void reset() {

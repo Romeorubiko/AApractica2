@@ -16,7 +16,6 @@ public class Funcion {
 		for (LinkedList<Instancia> linkedList : pertenece) {
 			linkedList = new LinkedList<Instancia>();
 		}
-		path = "input.txt";
 		
 	}
 	
@@ -24,7 +23,7 @@ public class Funcion {
 	 * devuelve la posicion donde se encuenta la situcacion mas parecida y ademas la guarda en la estructura de datos
 	 */
 	public int pertenecia(Instancia ins) {//todo
-		return -1;
+		return 1;
 	}
 	/**
 	 * devuelve la situacion qeu se parezca más en la lista que se ha pasado como parámetro
@@ -120,34 +119,34 @@ public class Funcion {
 					case 19:
 						ins.distance = Integer.parseInt(valor);
 						break;
-					case 22:
+					case 20:
 						ins.saltoSeguido = Integer.parseInt(valor);
 						break;
-					case 23:
+					case 21:
 						ins.marioOnGorund = Boolean.parseBoolean(valor);
 						break;
-					case 24:
+					case 22:
 						ins.reward6 = Integer.parseInt(valor);
 						break;
-					case 25:
+					case 23:
 						ins.reward12 = Integer.parseInt(valor);
 						break;
-					case 26:
+					case 24:
 						ins.reward24 = Integer.parseInt(valor);
 						break;
-					case 27:
+					case 25:
 						ins.distance6 = Integer.parseInt(valor);
 						break;
-					case 28:
+					case 26:
 						ins.distance12 = Integer.parseInt(valor);
 						break;
-					case 29:
+					case 27:
 						ins.distance24 = Integer.parseInt(valor);
 						break;
-					case 30:
+					case 28:
 						ins.marioMode = Integer.parseInt(valor);
 						break;
-					case 31:
+					case 29:
 						ins.evaluacion = Integer.parseInt(valor);
 						break;
 					}
