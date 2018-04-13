@@ -59,8 +59,8 @@ public class Grabador {
 			
 			pw.print(e.getEvaluationInfo().distancePassedCells+",");
 
-			pw.print(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained+",");
-			pw.print(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal+",");
+//			pw.print(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained+",");
+//			pw.print(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal+",");
 			
 			pw.print(saltoSeguido+",");
 			
@@ -108,6 +108,7 @@ public class Grabador {
 //			pw.print((int)(((1.0013*e.getIntermediateReward()-27.2653)*0.998+10.0473)*0.9948+21.1029)+",");
 //			
 			//small(00)=1 ; large(10)=2 ; fire(01)=3
+			System.out.println(e.getMarioMode());
 			if (e.getMarioMode() == 00)pw.print(1+",");
 			else if(e.getMarioMode() == 10)pw.print(2+",");
 			else if(e.getMarioMode() == 01)pw.print(3+",");
@@ -225,8 +226,8 @@ public class Grabador {
 		pw.println("@attribute nearestCoin numeric");
 		pw.println("@attribute nearestCreature numeric");
 		pw.println("@attribute distancePassedCells numeric");
-		pw.println("@attribute coinsOnScreen numeric");
-		pw.println("@attribute creaturesOnScreen numeric");
+//		pw.println("@attribute coinsOnScreen numeric");
+//		pw.println("@attribute creaturesOnScreen numeric");
 		pw.println("@attribute saltoSeguido numeric");
 		pw.println("@attribute marioOnGround {true,false}");
 		/*pw.println("@attribute accion_LEFT {true,false}");
