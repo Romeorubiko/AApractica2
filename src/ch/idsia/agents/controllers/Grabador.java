@@ -107,11 +107,7 @@ public class Grabador {
 //				+3643.8188)+",");
 //			pw.print((int)(((1.0013*e.getIntermediateReward()-27.2653)*0.998+10.0473)*0.9948+21.1029)+",");
 //			
-			//small(00)=1 ; large(10)=2 ; fire(01)=3
-			System.out.println(e.getMarioMode());
-			if (e.getMarioMode() == 00)pw.print(1+",");
-			else if(e.getMarioMode() == 10)pw.print(2+",");
-			else if(e.getMarioMode() == 01)pw.print(3+",");
+			pw.print(e.getMarioMode()+",");
 			
 			Instancia ins = new Instancia();
 			//Todo añadir los atributos necesarios para que la instancia se evalue
