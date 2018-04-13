@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Funcion {
-	Instancia situaciones [];
+	Instancia situaciones[];
 	LinkedList<Instancia> pertenece [];
 	String path;
 	
@@ -167,8 +167,9 @@ public class Funcion {
 	}
 	
 	private void initSituaciones() {
-		situaciones = new Instancia[4];
 		
+		situaciones =  new Instancia[4];
+
 		//caso a
 		Instancia temp = new Instancia();
 		temp.nearestCreature = 3;
@@ -230,7 +231,7 @@ public class Funcion {
 		temp.merge7_11 = 0;
 		temp.merge7_12 = 0;
 		temp.merge8_12 = 0;
-		situaciones[3] = temp;
+		situaciones[2] = temp;
 
 		//caso d
 		temp = new Instancia();
@@ -251,7 +252,7 @@ public class Funcion {
 		temp.merge7_11 = 0;
 		temp.merge7_12 = 0;
 		temp.merge8_12 = 0;
-		situaciones[4] = temp;
+		situaciones[3] = temp;
 		
 		
 	}

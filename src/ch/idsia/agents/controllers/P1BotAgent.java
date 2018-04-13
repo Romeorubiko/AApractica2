@@ -76,6 +76,8 @@ public class P1BotAgent extends BasicMarioAIAgent implements Agent {
 			PrintWriter pw = new PrintWriter(fichero);
 			pw.println();
 		}
+
+		System.out.println("mark 1");
 		funcion = new Funcion();
 		funcion.indexar("input.arff");
 	}
