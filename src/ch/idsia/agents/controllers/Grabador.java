@@ -30,34 +30,33 @@ public class Grabador {
 	static Queue<Integer> hace24reward = new LinkedList<Integer>();
 	static Queue<Integer> hace24distance = new LinkedList<Integer>();
 	static Queue<boolean[]> action24 = new LinkedList<boolean[]>();
-	static Queue<MarioEnvironment> environments = new LinkedList<MarioEnvironment>();
+	static Queue<byte[][]> hace24merge = new LinkedList<byte[][]>();
 	
 	static void grabar(MarioEnvironment e, boolean[] action, FileWriter fichero) {
-		environments.add(e);
 		hace24reward.add(e.getIntermediateReward());
 		hace24distance.add(e.getEvaluationInfo().distancePassedCells);
-		action24.add(action);
+		action24.add(action.clone());
+		hace24merge.add(e.getMergedObservationZZ(detalle, detalle));
 		if(ticks < 24) {
 			ticks++;
 			}
 		else {
-			e = environments.poll();
 			action = action24.poll();
 			Queue tempList = new LinkedList<>(hace24reward);
 			
 			PrintWriter pw = new PrintWriter(fichero);
 			
-			byte[][] temp = e.getMergedObservationZZ(detalle, detalle);
+			byte[][] temp = hace24merge.poll();
 			for (int i = 5; i < 10; i++) {
 				for (int j = 10; j < 13; j++) {
 					pw.print(temp[i][j]+",");
 				}
 			}
-			pw.print(e.getIntermediateReward()+",");
-			pw.print(nearestCoin(e.getMergedObservationZZ(1, 1))+",");
-			pw.print(nearestCreature(e.getMergedObservationZZ(1, 1))+",");
+			pw.print(hace24reward.peek()+",");
+			pw.print(nearestCoin(temp)+",");
+			pw.print(nearestCreature(temp)+",");
 			
-			pw.print(e.getEvaluationInfo().distancePassedCells+",");
+			pw.print(hace24distance.peek()+",");
 
 //			pw.print(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained+",");
 //			pw.print(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal+",");
