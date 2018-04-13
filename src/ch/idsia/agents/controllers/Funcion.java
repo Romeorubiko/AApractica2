@@ -35,7 +35,7 @@ public class Funcion {
 	 * devuelve el valor que ha salido del resultado de aplicar la fórmula
 	 */
 	static public int evaluacion(Instancia ins) {//todo
-		return -1;
+		return 0;
 	}
 	
 	public void indexar(String path) throws IOException {
@@ -164,8 +164,6 @@ public class Funcion {
 		}
 		System.out.println("___________________________________________________________");
 		
-		System.out.println(pertenece[0].get(0).toString());
-
 	}
 	
 	private void initSituaciones() {
