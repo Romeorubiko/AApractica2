@@ -23,23 +23,165 @@ public class Funcion {
 	 * devuelve la posicion donde se encuenta la situcacion mas parecida y ademas la guarda en la estructura de datos
 	 */
 	public int pertenecia(Instancia ins) {//todo
-		return 0;
+	//A = Monstruo cerca; B = moneda cerca; C= Hay un bstaculo que saltar; D = No hay nada;
+		float SituacionA;
+		float SituacionB;
+		float SituacionC;
+		float SituacionD;
+	//Pesos asignados a cada atributo
+		float P1 = 35;
+		float P2 = 35;
+		float P3 = 3.33;
+		float P4 = 1.11;
+
+	//Calculo de la situaci贸n A	
+		int nearestCreature = 0;
+		int nearestCoin = 0;
+		int merge3 = 0;
+		int mergeResto = 0;
+		nearestCreature = Math.abs(ins.nearestCreature-3) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
+		if(ins.merge9_10 != 80) merge3 += 1;
+		if(ins.merge9_11 != 80) merge3 += 1;
+		if(ins.merge9_12 != 80) merge3 += 1;
+		if(ins.merge8_10 != 80) merge3 += 1;
+		if(ins.merge8_11 != 80) merge3 += 1;
+		if(ins.merge7_10 != 80) merge3 += 1;
+		merge3 *= P3;
+		if(ins.merge5_10 != 0) mergeResto += 1;
+		if(ins.merge5_11 != 0) mergeResto += 1;
+		if(ins.merge5_12 != 0) mergeResto += 1;
+		if(ins.merge6_10 != 0) mergeResto += 1;
+		if(ins.merge6_11 != 0) mergeResto += 1;
+		if(ins.merge6_12 != 0) mergeResto += 1;	
+		if(ins.merge7_11 != 0) mergeResto += 1;
+		if(ins.merge7_12 != 0) mergeResto += 1;
+		if(ins.merge8_12 != 0) mergeResto += 1;
+		mergeResto *= P4;
+
+		SituacionA = nearestCreature + nearestCoin + merge3 + mergeResto;
+
+	//Calculo de la situaci贸n B	
+
+		int nearestCreature = 0;
+		int nearestCoin = 0;
+		int merge3 = 0;
+		int mergeResto = 0;
+		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-3) * P2;
+		if(ins.merge9_10 != 80) merge3 += 1;
+		if(ins.merge9_11 != 80) merge3 += 1;
+		if(ins.merge9_12 != 80) merge3 += 1;
+		if(ins.merge8_10 != 80) merge3 += 1;
+		if(ins.merge8_11 != 80) merge3 += 1;
+		if(ins.merge7_10 != 80) merge3 += 1;
+		merge3 *= P3;
+		if(ins.merge5_10 != 0) mergeResto += 1;
+		if(ins.merge5_11 != 0) mergeResto += 1;
+		if(ins.merge5_12 != 0) mergeResto += 1;
+		if(ins.merge6_10 != 0) mergeResto += 1;
+		if(ins.merge6_11 != 0) mergeResto += 1;
+		if(ins.merge6_12 != 0) mergeResto += 1;	
+		if(ins.merge7_11 != 0) mergeResto += 1;
+		if(ins.merge7_12 != 0) mergeResto += 1;
+		if(ins.merge8_12 != 0) mergeResto += 1;
+		mergeResto *= P4;
+
+		SituacionB = nearestCreature + nearestCoin + merge3 + mergeResto;
+
+	//Calculo de la situaci贸n C	
+
+		int nearestCreature = 0;
+		int nearestCoin = 0;
+		int merge3 = 0;
+		int mergeResto = 0;
+		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
+		if(ins.merge9_10 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
+		if(ins.merge9_11 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
+		if(ins.merge9_12 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
+		if(ins.merge8_10 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
+		if(ins.merge8_11 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
+		if(ins.merge7_10 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
+		merge3 *= P3;
+		if(ins.merge5_10 != 0) mergeResto += 1;
+		if(ins.merge5_11 != 0) mergeResto += 1;
+		if(ins.merge5_12 != 0) mergeResto += 1;
+		if(ins.merge6_10 != 0) mergeResto += 1;
+		if(ins.merge6_11 != 0) mergeResto += 1;
+		if(ins.merge6_12 != 0) mergeResto += 1;	
+		if(ins.merge7_11 != 0) mergeResto += 1;
+		if(ins.merge7_12 != 0) mergeResto += 1;
+		if(ins.merge8_12 != 0) mergeResto += 1;
+		mergeResto *= P4;
+
+		SituacionC = nearestCreature + nearestCoin + merge3 + mergeResto;
+
+	//Calculo de la situaci贸n D	
+
+		int nearestCreature = 0;
+		int nearestCoin = 0;
+		int merge3 = 0;
+		int mergeResto = 0;
+		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
+		if(ins.merge9_10 != 0) merge3 += 1;
+		if(ins.merge9_11 != 0) merge3 += 1;
+		if(ins.merge9_12 != 0) merge3 += 1;
+		if(ins.merge8_10 != 0) merge3 += 1;
+		if(ins.merge8_11 != 0) merge3 += 1;
+		if(ins.merge7_10 != 0) merge3 += 1;
+		merge3 *= P3;
+		if(ins.merge5_10 != 0) mergeResto += 1;
+		if(ins.merge5_11 != 0) mergeResto += 1;
+		if(ins.merge5_12 != 0) mergeResto += 1;
+		if(ins.merge6_10 != 0) mergeResto += 1;
+		if(ins.merge6_11 != 0) mergeResto += 1;
+		if(ins.merge6_12 != 0) mergeResto += 1;	
+		if(ins.merge7_11 != 0) mergeResto += 1;
+		if(ins.merge7_12 != 0) mergeResto += 1;
+		if(ins.merge8_12 != 0) mergeResto += 1;
+		mergeResto *= P4;	
+
+		SituacionD = nearestCreature + nearestCoin + merge3 + mergeResto;	
+
+		//Una vez calculadas todas las situaciones, devolvemos la posici贸n de la mayor
+		
+		if(SituacionA > SituacionB && SituacionA > SituacionC && SituacionA > SituacionD)
+			return 0;
+		if(SituacionB > SituacionC && SituacionB > SituacionA && SituacionB > SituacionD)
+			return 1;
+		if(SituacionC > SituacionB && SituacionC > SituacionA && SituacionC > SituacionD)
+			return 2;
+		else
+			return 3;
 	}
 	/**
-	 * devuelve la situacion qeu se parezca m醩 en la lista que se ha pasado como par醡etro
+	 * devuelve la situacion qeu se parezca m锟絪 en la lista que se ha pasado como par锟絤etro
 	 */
 	public Instancia similitud(Instancia ins, Instancia[] list) {//todo
 		return null;
 	}
 	/**
-	 * devuelve el valor que ha salido del resultado de aplicar la f髍mula
+	 * devuelve el valor que ha salido del resultado de aplicar la f锟絩mula
 	 */
 	static public int evaluacion(Instancia ins) {//todo
-		return 0;
+		int evaluacion;
+	//Pesos asignados a cada atributo	
+		int P1 = 5;
+		int P2 = 15;
+		int P3 = 20;
+		int P4 = 30;
+		int P5 = 30;
+		evaluacion = [-2 ins.reward + (P1 * ins.reward12 + 
+		P2 * ins.reward24)] + [-2 ins.distance + (P3 * ins.distance12 + 
+		P4 * ins.distance24) ] + P5 * ins.marioMode;
+
+		return evaluacion;
 	}
 	
 	public void indexar(String path) throws IOException {
-		// rellenar el pertenece que es la estructura donde vamo s a indexar
+		// rellenar el pertenece que es la estructura donde vamos a indexar
 		this.path = path;
 		//abrimos el fichero para su lectura
 		BufferedReader br = new BufferedReader(new FileReader(path));     
@@ -61,7 +203,7 @@ public class Funcion {
 				if(c!=',')valor = valor + c;
 				else {
 					contador++;
-					switch (contador) {//todo a馻dir la posicion de los parametros que nos interesan y guardarlo en ins
+					switch (contador) {//todo a锟絘dir la posicion de los parametros que nos interesan y guardarlo en ins
 					case 1:
 						ins.merge5_10 = Integer.parseInt(valor);
 						break;
@@ -158,7 +300,7 @@ public class Funcion {
 			pertenece[pertenecia(ins)].add(ins);
 			line = br.readLine();
 		}
-		System.out.println("ndexado completado!");
+		System.out.println("锟絀ndexado completado!");
 		for (int i = 0; i < pertenece.length; i++) {
 			System.out.println("Coincidencias con situacion "+i+": "+pertenece[i].size());
 		}
