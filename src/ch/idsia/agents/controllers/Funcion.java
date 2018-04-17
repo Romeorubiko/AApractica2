@@ -163,8 +163,6 @@ public class Funcion {
 
 		//Array de ints que contendrá los valores de similitud de cada instancia de la lista con la nueva instancia
 		int valores[] = new int [list.length];
-		//Array de ints que contiene los 3 mejores valores de similitud (los más bajos)
-		int mejores[] = new int [3];
 		//Variables donde vamos a guardar la posición en la lista de la instancia más parecía
 		int posicion1,posicion2,posicion3;
 
@@ -172,24 +170,15 @@ public class Funcion {
 		for(int i=0; i<list.length;i++){
 			valores[i] = comparar(ins,list[i]);
 		}
-	//Rellenamos el array con las posiciones 
-	//Cuanta menos similitud, más parecidos son
+	//Lo inicializamos con los 3 primeros
+		int mejores[] = {valores[0], valores[1], valores[2]}
+		int posicionPeorSimilitud;
+	//Recorremos el array con los valores de similitud y vamos guardando los 3 más grandes
 		for (int i=0; i<valores.length; i++){
-			if(valores[i] < mejores[0] && valores[i] > mejores[1] && valores[i] > mejores[2] ){
-				mejores[0] = valores[i];
-				posicion1 = i;
-			}
-			else{
-				if(valores[i] > mejores[0] && valores[i] < mejores[1] && valores[i] > mejores[2] ){
-					mejores[1] = valores[i];
-					posicion2 = i;
-				}
-				else{
-					if(valores[i] > mejores[0] && valores[i] > mejores[1] && valores[i] < mejores[2] ){
-						mejores[2] = valores[i];
-						posicion3 = i;
-					}
-				}
+			//Posición del peor de los mejores
+			posicionPeorSimilitud = mayor(mejores);
+			if(valores[i] < mejores[peorSimilitud]){
+				mejores[peorSimilitud] = valores[i];
 			}
 		}
 
@@ -208,7 +197,14 @@ public class Funcion {
 		else
 			return list[posicion3].right_jump;
 	}
-
+	public int mayor(int [] num){
+        int mayor = 0;
+        for(int i=0;i<num.length;i++){
+            if(num[i]>num[mayor])
+                mayor = i;
+        }
+        return num[mayor];
+    }
 //Función que devuelve la similitud entre la nueva instancia y una instancia de la lista
 
 	public int comparar(Instancia ins, Instancia lista){
