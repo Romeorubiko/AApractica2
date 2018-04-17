@@ -47,7 +47,7 @@ import ch.idsia.tools.MarioAIOptions;
 
 import java.util.Random;
 
-public class P1BotAgent extends BasicMarioAIAgent implements Agent {
+public class P2BotAgent extends BasicMarioAIAgent implements Agent {
 
     int tick;
     private byte[][] mergeObsr = null;
@@ -55,19 +55,19 @@ public class P1BotAgent extends BasicMarioAIAgent implements Agent {
     private int anteriorBloque = 0;
     private int precaucion = 0;
     private int agacharse =0;
-    private String path = "P1BotTest.arff";
+    private String path = "P2BotTest.arff";
     private FileWriter fichero;
     private boolean grabar = true;
     private Funcion funcion;
 
-    public P1BotAgent() throws IOException{
-	        super("P1BotAgent");
+    public P2BotAgent() throws IOException{
+	        super("P2BotAgent");
 	        tick = 0;
 		fichero = new FileWriter(path, true);
 	        BufferedReader br = new BufferedReader(new FileReader(path));     
 		if (br.readLine() == null) {
 			
-			Grabador.cabeceraWeka(fichero ,"P1BotAgent");
+			Grabador.cabeceraWeka(fichero ,"P2BotAgent");
 	    		System.out.println("No errors, and file empty");
 		}
 		else{

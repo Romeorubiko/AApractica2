@@ -44,23 +44,23 @@ import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.Environment;
 import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 
-public final class P1HumanAgent extends KeyAdapter implements Agent
+public final class P2HumanAgent extends KeyAdapter implements Agent
 {
     
     private boolean[] Action    = null;
-    private String Name         = "P1HumanAgent";
+    private String Name         = "P2HumanAgent";
     FileWriter fichero;
     String path = "P1HumanTest.arff";
     private boolean grabar = true;
 
-    public P1HumanAgent() throws IOException
+    public P2HumanAgent() throws IOException
     {
 		this.reset();
 	        fichero = new FileWriter(path, true);
 	        BufferedReader br = new BufferedReader(new FileReader(path));     
 		if (br.readLine() == null) {
 			
-			Grabador.cabeceraWeka(fichero ,"P1HumanAgent");
+			Grabador.cabeceraWeka(fichero ,"P2HumanAgent");
 	    		System.out.println("No errors, and file empty");
 		}
 		else{

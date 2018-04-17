@@ -31,16 +31,16 @@ public class Funcion {
 	//Pesos asignados a cada atributo
 		float P1 = 35;
 		float P2 = 35;
-		float P3 = 3.33;
-		float P4 = 1.11;
+		float P3 = (float) 3.33;
+		float P4 = (float) 1.11;
 
 	//Calculo de la situación A	
 		int nearestCreature = 0;
 		int nearestCoin = 0;
 		int merge3 = 0;
 		int mergeResto = 0;
-		nearestCreature = Math.abs(ins.nearestCreature-3) * P1;
-		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
+		nearestCreature = (int) (Math.abs(ins.nearestCreature-3) * P1);
+		nearestCoin = (int) (Math.abs(ins.nearestCoin-11) * P2);
 		if(ins.merge9_10 != 80) merge3 += 1;
 		if(ins.merge9_11 != 80) merge3 += 1;
 		if(ins.merge9_12 != 80) merge3 += 1;
@@ -63,12 +63,12 @@ public class Funcion {
 
 	//Calculo de la situación B	
 
-		int nearestCreature = 0;
-		int nearestCoin = 0;
-		int merge3 = 0;
-		int mergeResto = 0;
-		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
-		nearestCoin = Math.abs(ins.nearestCoin-3) * P2;
+		nearestCreature = 0;
+		nearestCoin = 0;
+		merge3 = 0;
+		mergeResto = 0;
+		nearestCreature = (int) (Math.abs(ins.nearestCreature-11) * P1);
+		nearestCoin = (int) (Math.abs(ins.nearestCoin-3) * P2);
 		if(ins.merge9_10 != 80) merge3 += 1;
 		if(ins.merge9_11 != 80) merge3 += 1;
 		if(ins.merge9_12 != 80) merge3 += 1;
@@ -91,12 +91,12 @@ public class Funcion {
 
 	//Calculo de la situación C	
 
-		int nearestCreature = 0;
-		int nearestCoin = 0;
-		int merge3 = 0;
-		int mergeResto = 0;
-		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
-		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
+		nearestCreature = 0;
+		nearestCoin = 0;
+		merge3 = 0;
+		mergeResto = 0;
+		nearestCreature = (int) (Math.abs(ins.nearestCreature-11) * P1);
+		nearestCoin = (int) (Math.abs(ins.nearestCoin-11) * P2);
 		if(ins.merge9_10 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
 		if(ins.merge9_11 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
 		if(ins.merge9_12 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
@@ -119,12 +119,12 @@ public class Funcion {
 
 	//Calculo de la situación D	
 
-		int nearestCreature = 0;
-		int nearestCoin = 0;
-		int merge3 = 0;
-		int mergeResto = 0;
-		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
-		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
+		nearestCreature = 0;
+		nearestCoin = 0;
+		merge3 = 0;
+		mergeResto = 0;
+		nearestCreature = (int) (Math.abs(ins.nearestCreature-11) * P1);
+		nearestCoin = (int) (Math.abs(ins.nearestCoin-11) * P2);
 		if(ins.merge9_10 != 0) merge3 += 1;
 		if(ins.merge9_11 != 0) merge3 += 1;
 		if(ins.merge9_12 != 0) merge3 += 1;
@@ -173,9 +173,9 @@ public class Funcion {
 		int P3 = 20;
 		int P4 = 30;
 		int P5 = 30;
-		evaluacion = [-2 ins.reward + (P1 * ins.reward12 + 
-		P2 * ins.reward24)] + [-2 ins.distance + (P3 * ins.distance12 + 
-		P4 * ins.distance24) ] + P5 * ins.marioMode;
+		evaluacion = (-2 * ins.reward + (P1 * ins.reward12 + 
+		P2 * ins.reward24)) + (-2 * ins.distance + (P3 * ins.distance12 + 
+		P4 * ins.distance24))+ P5 * ins.marioMode;
 
 		return evaluacion;
 	}
