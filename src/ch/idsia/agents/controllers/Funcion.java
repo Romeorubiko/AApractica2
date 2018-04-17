@@ -171,7 +171,7 @@ public class Funcion {
 			valores[i] = comparar(ins,list[i]);
 		}
 	//Lo inicializamos con los 3 primeros
-		int mejores[] = {valores[0], valores[1], valores[2]}
+		int mejores[] = {valores[0], valores[1], valores[2]};
 		int posicionPeorSimilitud;
 	//Recorremos el array con los valores de similitud y vamos guardando los 3 más grandes
 		for (int i=0; i<valores.length; i++){
@@ -197,6 +197,8 @@ public class Funcion {
 		else
 			return list[posicion3].right_jump;
 	}
+
+	//Función que devuelve el mayor número de un array
 	public int mayor(int [] num){
         int mayor = 0;
         for(int i=0;i<num.length;i++){
@@ -225,7 +227,7 @@ public class Funcion {
 
 		nearestCreature = (Math.abs(ins.nearestCreature-lista.nearestCreature) * P1);
 		nearestCoin = (Math.abs(ins.nearestCoin-lista.nearestCoin) * P2);
-		marioOnGround = (Math.abs(ins.marioOnGorund-lista.marioOnGorund) * P5);
+		marioOnGround = if(ins.marioOnGorund != lista.marioOnGorund) 1 * P5);
 		saltoSeguido = (Math.abs(ins.saltoSeguido-lista.saltoSeguido) * P6);
 		if(ins.merge9_10 != lista.merge9_10) merge3 += 1;
 		if(ins.merge9_11 != lista.merge9_11) merge3 += 1;
