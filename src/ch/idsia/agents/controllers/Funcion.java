@@ -161,33 +161,76 @@ public class Funcion {
 	 */
 	public Instancia similitud(Instancia ins, Instancia[] list) {//todo
 
-		Instancia mejores[] = new Instancia mejores[3];
-		int valores[] = new int valores[list.length-1];
+		//Array de ints que contendrá los valores de similitud de cada instancia de la lista con la nueva instancia
+		int valores[] = new int [list.length];
+		//Array de ints que contiene los 3 mejores valores de similitud (los más bajos)
+		int mejores[] = new int [3];
+		//Variables donde vamos a guardar la posición en la lista de la instancia más parecía
+		int posicion1,posicion2,posicion3;
 
 	//Vamos a recorrer la lista comparando la instancia nueva con todas las demás y guardando su similitud en el array
 		for(int i=0; i<list.length;i++){
 			valores[i] = comparar(ins,list[i]);
 		}
+	//Rellenamos el array con las posiciones 
+	//Cuanta menos similitud, más parecidos son
+		for (int i=0; i<valores.length; i++){
+			if(valores[i] < mejores[0] && valores[i] > mejores[1] && valores[i] > mejores[2] ){
+				mejores[0] = valores[i];
+				posicion1 = i;
+			}
+			else{
+				if(valores[i] > mejores[0] && valores[i] < mejores[1] && valores[i] > mejores[2] ){
+					mejores[1] = valores[i];
+					posicion2 = i;
+				}
+				else{
+					if(valores[i] > mejores[0] && valores[i] > mejores[1] && valores[i] < mejores[2] ){
+						mejores[2] = valores[i];
+						posicion3 = i;
+					}
+				}
+			}
+		}
 
-	//Recorremos el array y seleccionamos las 3 mejores
+	/*Como las instancias de la lista ya tienen un valor de evaluacion, vamos a hacer la media 
+	de la diferencia (ya que cuanta más evaluación mejor y cuanta menos similitud mejor) entre evaluación
+	 y similitud */
 
-	//Llamamos a la función de evaluación de cada una de ellas y dependiendo de ese valor y de l evaluación, devolvemos la acción
+		float total1 = (list[posicion1].evaluacion - mejores[1]) / 2;
+		float total2 = (list[posicion2].evaluacion - mejores[2]) / 2;
+		float total3 = (list[posicion3].evaluacion - mejores[3]) / 2;
 
-		return null;
+		if(total1 > total2 && total1 > total3)
+			return list[posicion1].right_jump;
+		if(total2 > total1 && total2 > total3)
+			return list[posicion2].right_jump;
+		else
+			return list[posicion3].right_jump;
 	}
 
+//Función que devuelve la similitud entre la nueva instancia y una instancia de la lista
+
 	public int comparar(Instancia ins, Instancia lista){
+
+		float similitud;
 		float nearestCreature = 0;
 		float nearestCoin = 0;
+		float marioOnGround;
+		float saltoSeguido;
 		float merge3 = 0;
 		float mergeResto = 0;
-		float P1 = 35;
-		float P2 = 35;
-		float P3 = (float) 3.33;
-		float P4 = (float) 1.11;
+		float P1 = 25;
+		float P2 = 25;
+		float P3 = 3.33;	
+		float P4 = 1.11;
+		float P5 = 10;
+		float P6 = 10;
 
 		nearestCreature = (Math.abs(ins.nearestCreature-lista.nearestCreature) * P1);
 		nearestCoin = (Math.abs(ins.nearestCoin-lista.nearestCoin) * P2);
+		marioOnGround = (Math.abs(ins.marioOnGorund-lista.marioOnGorund) * P5);
+		saltoSeguido = (Math.abs(ins.saltoSeguido-lista.saltoSeguido) * P6);
 		if(ins.merge9_10 != lista.merge9_10) merge3 += 1;
 		if(ins.merge9_11 != lista.merge9_11) merge3 += 1;
 		if(ins.merge9_12 != lista.merge9_12) merge3 += 1;
@@ -205,7 +248,9 @@ public class Funcion {
 		if(ins.merge7_12 != lista.merge7_12) mergeResto += 1;
 		if(ins.merge8_12 != lista.merge8_12) mergeResto += 1;
 		mergeResto *= P4;
-		return 0;
+
+		similitud = nearestCreature + nearestCoin + merge3 + mergeResto + marioOnGorund + saltoSeguido;
+		return similitud;
 	}
 	/**
 	 * devuelve el valor que ha salido del resultado de aplicar la f�rmula
