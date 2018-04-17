@@ -164,7 +164,6 @@ public class Funcion {
 		//Array de ints que contendrá los valores de similitud de cada instancia de la lista con la nueva instancia
 		int valores[] = new int [list.length];
 		//Variables donde vamos a guardar la posición en la lista de la instancia más parecía
-		int posicion1,posicion2,posicion3;
 
 	//Vamos a recorrer la lista comparando la instancia nueva con todas las demás y guardando su similitud en el array
 		for(int i=0; i<list.length;i++){
@@ -172,6 +171,9 @@ public class Funcion {
 		}
 	//Lo inicializamos con los 3 primeros
 		int mejores[] = {valores[0], valores[1], valores[2]};
+		int posicion1 = list[0];
+		int posicion2 = list[1];
+		int posicion3 = list[2];
 		int posicionPeorSimilitud;
 	//Recorremos el array con los valores de similitud y vamos guardando los 3 más grandes
 		for (int i=0; i<valores.length; i++){
@@ -179,6 +181,14 @@ public class Funcion {
 			posicionPeorSimilitud = mayor(mejores);
 			if(valores[i] < mejores[peorSimilitud]){
 				mejores[peorSimilitud] = valores[i];
+				switch(posicionPeorSimilitud){
+					case 0: posicion1 = i;
+							break;
+					case 1: posicion2 = i;
+							break;
+					default: posicion3 = i;
+
+				}
 			}
 		}
 
