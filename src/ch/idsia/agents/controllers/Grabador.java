@@ -109,6 +109,7 @@ public class Grabador {
 			pw.print(e.getMarioMode()+",");
 			
 			Instancia ins = new Instancia();
+			
 			//Todo añadir los atributos necesarios para que la instancia se evalue
 			pw.print(Funcion.evaluacion(ins)+",");	
 			

@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Funcion {
-	Instancia situaciones[];
+	//Instancia situaciones[];
 	LinkedList<Instancia> pertenece[];
 	String path;
 	
 	public Funcion() {
-		initSituaciones();
-		pertenece = new LinkedList[4];
+		//initSituaciones();
+		//pertenece = new LinkedList[4];
 		for (int i = 0; i < pertenece.length; i++) {
 			pertenece[i] = new LinkedList<Instancia>();
 		}
@@ -308,7 +308,7 @@ public class Funcion {
 		
 	}
 	
-	private void initSituaciones() {
+	/*private void initSituaciones() {
 		
 		situaciones =  new Instancia[4];
 
@@ -397,7 +397,7 @@ public class Funcion {
 		situaciones[3] = temp;
 		
 		
-	}
+	}*/
 	
 	
 }
