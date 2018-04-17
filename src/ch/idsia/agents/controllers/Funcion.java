@@ -166,18 +166,16 @@ public class Funcion {
 	 * devuelve el valor que ha salido del resultado de aplicar la f�rmula
 	 */
 	static public int evaluacion(Instancia ins) {//todo
-		int evaluacion;
 	//Pesos asignados a cada atributo	
 		int P1 = 5;
 		int P2 = 15;
 		int P3 = 20;
 		int P4 = 30;
 		int P5 = 30;
-		evaluacion = (-2 * ins.reward + (P1 * ins.reward12 + 
-		P2 * ins.reward24)) + (-2 * ins.distance + (P3 * ins.distance12 + 
-		P4 * ins.distance24))+ P5 * ins.marioMode;
+		return (P1 * (ins.reward12-ins.reward) + P2 * (ins.reward24-ins.reward)) 
+				+ (P3 * (ins.distance12-ins.distance) + P4 * (ins.distance24-ins.distance))
+				+ P5 * ins.marioMode;
 
-		return evaluacion;
 	}
 	
 	public void indexar(String path) throws IOException {

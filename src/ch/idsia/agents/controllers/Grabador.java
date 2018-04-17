@@ -41,6 +41,7 @@ public class Grabador {
 			ticks++;
 			}
 		else {
+			Instancia ins = new Instancia();
 			action = action24.poll();
 			Queue tempList = new LinkedList<>(hace24reward);
 			
@@ -52,35 +53,50 @@ public class Grabador {
 					pw.print(temp[i][j]+",");
 				}
 			}
-			pw.print(hace24reward.peek()+",");
-			pw.print(nearestCoin(temp)+",");
-			pw.print(nearestCreature(temp)+",");
 			
+			pw.print(hace24reward.peek()+",");
+			ins.reward = hace24reward.peek();
+			pw.print(nearestCoin(temp)+",");
+			ins.nearestCoin = nearestCoin(temp);
+			pw.print(nearestCreature(temp)+",");
+			ins.nearestCreature = nearestCreature(temp);
 			pw.print(hace24distance.peek()+",");
+			ins.distance = hace24distance.peek();
 
 //			pw.print(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained+",");
 //			pw.print(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal+",");
 			
 			pw.print(saltoSeguido+",");
+			ins.saltoSeguido = saltoSeguido;
 			
-			if (temp[10][9]!=0)pw.print("true,");
-			else pw.print("false,");
+			if (temp[10][9]!=0){
+				pw.print("true,");
+			}
+			else{
+				pw.print("false,");
+			}
 			
 			for (int i = 0; i < 5; i++) tempList.poll();
-			pw.print(tempList.poll()+",");
+			pw.print(tempList.peek()+",");
+			ins.reward6 = (int)tempList.poll();
 			for (int i = 0; i < 5; i++) tempList.poll();
-			pw.print(tempList.poll()+",");
+			pw.print(tempList.peek()+",");
+			ins.reward12 = (int)tempList.poll();
 			for (int i = 0; i < 11; i++) tempList.poll();
-			pw.print(tempList.poll()+",");
+			pw.print(tempList.peek()+",");
+			ins.reward24 = (int)tempList.poll();
 			hace24reward.poll();
 			
 			tempList = new LinkedList<>(hace24distance);
 			for (int i = 0; i < 5; i++) tempList.poll();
-			pw.print(tempList.poll()+",");
+			pw.print(tempList.peek()+",");
+			ins.distance6 = (int)tempList.poll();
 			for (int i = 0; i < 5; i++) tempList.poll();
-			pw.print(tempList.poll()+",");
+			pw.print(tempList.peek()+",");
+			ins.distance12 = (int)tempList.poll();
 			for (int i = 0; i < 11; i++) tempList.poll();
-			pw.print(tempList.poll()+",");
+			pw.print(tempList.peek()+",");
+			ins.distance24 = (int)tempList.poll();
 			hace24distance.poll();
 			
 			/*pw.print(action[Mario.KEY_LEFT]+",");
@@ -108,9 +124,6 @@ public class Grabador {
 //			
 			pw.print(e.getMarioMode()+",");
 			
-			Instancia ins = new Instancia();
-			
-			//Todo añadir los atributos necesarios para que la instancia se evalue
 			pw.print(Funcion.evaluacion(ins)+",");	
 			
 			if (action[Mario.KEY_RIGHT])pw.print(1);
