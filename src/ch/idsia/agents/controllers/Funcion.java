@@ -35,12 +35,12 @@ public class Funcion {
 		float P4 = (float) 1.11;
 
 	//Calculo de la situación A	
-		int nearestCreature = 0;
-		int nearestCoin = 0;
-		int merge3 = 0;
-		int mergeResto = 0;
-		nearestCreature = (int) (Math.abs(ins.nearestCreature-3) * P1);
-		nearestCoin = (int) (Math.abs(ins.nearestCoin-11) * P2);
+		float nearestCreature = 0;
+		float nearestCoin = 0;
+		float merge3 = 0;
+		float mergeResto = 0;
+		nearestCreature = (Math.abs(ins.nearestCreature-3) * P1);
+		nearestCoin = (Math.abs(ins.nearestCoin-11) * P2);
 		if(ins.merge9_10 != 80) merge3 += 1;
 		if(ins.merge9_11 != 80) merge3 += 1;
 		if(ins.merge9_12 != 80) merge3 += 1;
@@ -67,8 +67,8 @@ public class Funcion {
 		nearestCoin = 0;
 		merge3 = 0;
 		mergeResto = 0;
-		nearestCreature = (int) (Math.abs(ins.nearestCreature-11) * P1);
-		nearestCoin = (int) (Math.abs(ins.nearestCoin-3) * P2);
+		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-3) * P2;
 		if(ins.merge9_10 != 80) merge3 += 1;
 		if(ins.merge9_11 != 80) merge3 += 1;
 		if(ins.merge9_12 != 80) merge3 += 1;
@@ -95,8 +95,8 @@ public class Funcion {
 		nearestCoin = 0;
 		merge3 = 0;
 		mergeResto = 0;
-		nearestCreature = (int) (Math.abs(ins.nearestCreature-11) * P1);
-		nearestCoin = (int) (Math.abs(ins.nearestCoin-11) * P2);
+		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
 		if(ins.merge9_10 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
 		if(ins.merge9_11 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
 		if(ins.merge9_12 != -24 | ins.merge9_10 != -60 | ins.merge9_10 != -85) merge3 += 1;
@@ -123,8 +123,8 @@ public class Funcion {
 		nearestCoin = 0;
 		merge3 = 0;
 		mergeResto = 0;
-		nearestCreature = (int) (Math.abs(ins.nearestCreature-11) * P1);
-		nearestCoin = (int) (Math.abs(ins.nearestCoin-11) * P2);
+		nearestCreature = Math.abs(ins.nearestCreature-11) * P1;
+		nearestCoin = Math.abs(ins.nearestCoin-11) * P2;
 		if(ins.merge9_10 != 0) merge3 += 1;
 		if(ins.merge9_11 != 0) merge3 += 1;
 		if(ins.merge9_12 != 0) merge3 += 1;
@@ -160,7 +160,52 @@ public class Funcion {
 	 * devuelve la situacion qeu se parezca m�s en la lista que se ha pasado como par�metro
 	 */
 	public Instancia similitud(Instancia ins, Instancia[] list) {//todo
+
+		Instancia mejores[] = new Instancia mejores[3];
+		int valores[] = new int valores[list.length-1];
+
+	//Vamos a recorrer la lista comparando la instancia nueva con todas las demás y guardando su similitud en el array
+		for(int i=0; i<list.length;i++){
+			valores[i] = comparar(ins,list[i]);
+		}
+
+	//Recorremos el array y seleccionamos las 3 mejores
+
+	//Llamamos a la función de evaluación de cada una de ellas y dependiendo de ese valor y de l evaluación, devolvemos la acción
+
 		return null;
+	}
+
+	public int comparar(Instancia ins, Instancia lista){
+		float nearestCreature = 0;
+		float nearestCoin = 0;
+		float merge3 = 0;
+		float mergeResto = 0;
+		float P1 = 35;
+		float P2 = 35;
+		float P3 = (float) 3.33;
+		float P4 = (float) 1.11;
+
+		nearestCreature = (Math.abs(ins.nearestCreature-lista.nearestCreature) * P1);
+		nearestCoin = (Math.abs(ins.nearestCoin-lista.nearestCoin) * P2);
+		if(ins.merge9_10 != lista.merge9_10) merge3 += 1;
+		if(ins.merge9_11 != lista.merge9_11) merge3 += 1;
+		if(ins.merge9_12 != lista.merge9_12) merge3 += 1;
+		if(ins.merge8_10 != lista.merge8_10) merge3 += 1;
+		if(ins.merge8_11 != lista.merge8_11) merge3 += 1;
+		if(ins.merge7_10 != lista.merge7_10) merge3 += 1;
+		merge3 *= P3;
+		if(ins.merge5_10 != lista.merge5_10) mergeResto += 1;
+		if(ins.merge5_11 != lista.merge5_11) mergeResto += 1;
+		if(ins.merge5_12 != lista.merge5_12) mergeResto += 1;
+		if(ins.merge6_10 != lista.merge6_10) mergeResto += 1;
+		if(ins.merge6_11 != lista.merge6_11) mergeResto += 1;
+		if(ins.merge6_12 != lista.merge6_12) mergeResto += 1;	
+		if(ins.merge7_11 != lista.merge7_11) mergeResto += 1;
+		if(ins.merge7_12 != lista.merge7_12) mergeResto += 1;
+		if(ins.merge8_12 != lista.merge8_12) mergeResto += 1;
+		mergeResto *= P4;
+		return 0;
 	}
 	/**
 	 * devuelve el valor que ha salido del resultado de aplicar la f�rmula
