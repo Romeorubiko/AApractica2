@@ -233,12 +233,12 @@ public class Grabador {
 		pw.println("@attribute mode24 numeric");
 		pw.println("@attribute marioMode numeric");
 		pw.println("@attribute evaluacion numeric");
-		pw.println("@attribute DOWN {true,false");
-		pw.println("@attribute JUMP {true,false");
-		pw.println("@attribute LEFT {true,false");
-		pw.println("@attribute RIGHT {true,false");
-		pw.println("@attribute SPEED {true,false");
-		pw.println("@attribute UP {true,false");
+		pw.println("@attribute DOWN {true,false}");
+		pw.println("@attribute JUMP {true,false}");
+		pw.println("@attribute LEFT {true,false}");
+		pw.println("@attribute RIGHT {true,false}");
+		pw.println("@attribute SPEED {true,false}");
+		pw.println("@attribute UP {true,false}");
 		
 		pw.println();
 		pw.println("@data");
