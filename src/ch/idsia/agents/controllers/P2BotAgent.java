@@ -76,9 +76,6 @@ public class P2BotAgent extends BasicMarioAIAgent implements Agent {
 			PrintWriter pw = new PrintWriter(fichero);
 			pw.println();
 		}
-
-//		funcion = new Funcion();
-//		funcion.indexar("src\\ch\\idsia\\agents\\controllers\\input.arff");
 	}
 
     public void reset() {
