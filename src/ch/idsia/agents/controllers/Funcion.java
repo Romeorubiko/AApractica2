@@ -196,17 +196,38 @@ public class Funcion {
 	/*Como las instancias de la lista ya tienen un valor de evaluacion, vamos a hacer la media 
 	de la diferencia (ya que cuanta mÃ¡s evaluaciÃ³n mejor y cuanta menos similitud mejor) entre evaluaciÃ³n
 	 y similitud */
-/*
+
 		float total1 = (posicion1.evaluacion - mejores[0]) / 2;
 		float total2 = (posicion2.evaluacion - mejores[1]) / 2;
 		float total3 = (posicion3.evaluacion - mejores[2]) / 2;
 
-		if(total1 > total2 && total1 > total3)
-			return posicion1;
-		if(total2 > total1 && total2 > total3)
-			return posicion2;
+		double random = Math.random();// generamos un numero al azar entre 0 y 1 
+
+		if(total1 > total2 && total1 > total3){
+			if(random < 0.7)// el 70% de las veces 
+				return posicion1; 
+			else if(random <0.9)// el 20% de las veces 
+					return posicion2; 
+				else// el 10% restante 
+					return posicion3; 
+		}
+		if(total2 > total1 && total2 > total3){
+			if(random < 0.7)// el 70% de las veces 
+				return posicion2; 
+			else if(random <0.9)// el 20% de las veces 
+					return posicion1; 
+				else// el 10% restante 
+					return posicion3; 
+		}
 		else
-			return posicion3;*/
+			if(random < 0.7)// el 70% de las veces 
+				return posicion3; 
+			else if(random <0.9)// el 20% de las veces 
+					return posicion2; 
+				else// el 10% restante 
+					return posicion1; 
+		
+		/*
 		if((int)Math.random()*3 == 2) {
 			return posicion1;
 		}
@@ -214,6 +235,7 @@ public class Funcion {
 			return posicion2;
 		}
 		return posicion3;
+		*/
 	}
 
 	//Funcion que devuelve la posición del mayor número
@@ -433,7 +455,7 @@ public class Funcion {
 			line = br.readLine();
 			contador = 0;
 		}
-		System.out.println("�Indexado completado!");
+		System.out.println("�Indexado completado!");
 		for (int i = 0; i < pertenece.length; i++) {
 			System.out.println("Coincidencias con situacion "+i+": "+pertenece[i].size());
 		}
