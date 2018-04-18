@@ -1,54 +1,20 @@
-<<<<<<< HEAD
-package ch.idsia.agents.controllers;
-
-public class Kaathe {
-	
-    Funcion funcion = new Funcion();
-    String path = "";
-    funcion.indexar(path);
-    
-}
-=======
-/*
- * Copyright (c) 2009-2010, Sergey Karakovskiy and Julian Togelius
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the Mario AI nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-
 package ch.idsia.agents.controllers;
 
 import java.io.IOException;
 import ch.idsia.agents.Agent;
+import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.Environment;
+import java.util.LinkedList;
 
 
 public class Kaathe extends BasicMarioAIAgent implements Agent {
 
-    int tick;
+	int tick;
+	int salto = 0;
     private byte[][] mergeObsr = null;
-    private Funcion funcion;
-
+	private Funcion funcion;
+	Instancia ins = new Instancia();
+	Instancia resultado = new Instancia();
     public Kaathe() throws IOException{
 	        super("Kaathe");
 	        tick = 0;
@@ -74,14 +40,65 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
     }
 
     public void integrateObservation(Environment environment) {
-        mergeObsr = environment.getMergedObservationZZ(1, 1);
+		mergeObsr = environment.getMergedObservationZZ(1, 1);
+		
+		ins.marioMode = environment.getMarioMode();
+		ins.reward = environment.getIntermediateReward();
+		ins.distance = environment.getEvaluationInfo().distancePassedCells;
+		ins.merge9_10 = mergeObsr[9][10];	
+		ins.merge9_11 = mergeObsr[9][11];
+		ins.merge9_12 = mergeObsr[9][12];
+		ins.merge8_10 = mergeObsr[8][10];
+		ins.merge8_11 = mergeObsr[8][11];
+		ins.merge8_12 = mergeObsr[8][12];
+		ins.merge7_10 = mergeObsr[7][10];
+		ins.merge7_11 = mergeObsr[7][11];
+		ins.merge7_12 = mergeObsr[7][12];
+		ins.merge6_10 = mergeObsr[6][10];
+		ins.merge6_11 = mergeObsr[6][11];
+		ins.merge6_12 = mergeObsr[6][12];
+		ins.merge5_10 = mergeObsr[5][10];
+		ins.merge5_11 = mergeObsr[5][11];
+		ins.merge5_12 = mergeObsr[5][12];
+		
         tick++;
     }
 
     public boolean[] getAction() {
+
+		action[Mario.KEY_DOWN] = false;
+        action[Mario.KEY_UP] = false;
+        action[Mario.KEY_RIGHT] = true;
+        action[Mario.KEY_LEFT] = false;
+        action[Mario.KEY_SPEED] = false;
+
+		boolean MarioOnGround;
+
+		int nearestCrea = Grabador.nearestCreature(mergeObsr);
+		int nearestCoin = Grabador.nearestCoin(mergeObsr);
+		if(mergeObsr[10][9] != 0) MarioOnGround = true;
+		if(action[Mario.KEY_JUMP]) salto ++;
+		else salto = 0;
+
+		ins.nearestCreature = nearestCrea;
+		ins.nearestCoin = nearestCoin;
+		ins.marioOnGorund = MarioOnGround;
+		ins.saltoSeguido = salto;
+
+		LinkedList <Instancia> pertenece [] = funcion.pertenece;
+		
+		int situacion = funcion.pertenecia(ins);
+
+	   resultado = funcion.similitud(ins, pertenece[situacion]);
+	   
+	   action[Mario.KEY_DOWN] = resultado.abajo;
+       action[Mario.KEY_UP] = resultado.salto;
+       action[Mario.KEY_RIGHT] = resultado.derecha;
+       action[Mario.KEY_LEFT] = resultado.izquierda;
+       action[Mario.KEY_SPEED] = resultado.velocidad;
+       
        return null;
     
     }
     
 }
->>>>>>> 25962834a37f2d4f9ca8bea4f0fd7771f9127e7a
