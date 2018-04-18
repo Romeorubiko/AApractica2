@@ -72,7 +72,7 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
         action[Mario.KEY_LEFT] = false;
         action[Mario.KEY_SPEED] = false;
 
-		boolean MarioOnGround;
+		boolean MarioOnGround = true;
 
 		int nearestCrea = Grabador.nearestCreature(mergeObsr);
 		int nearestCoin = Grabador.nearestCoin(mergeObsr);
@@ -84,8 +84,6 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
 		ins.nearestCoin = nearestCoin;
 		ins.marioOnGorund = MarioOnGround;
 		ins.saltoSeguido = salto;
-
-		LinkedList <Instancia> pertenece [] = funcion.pertenece;
 		
 		int situacion = funcion.pertenecia(ins);
 
