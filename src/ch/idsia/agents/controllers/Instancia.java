@@ -14,7 +14,8 @@ public class Instancia {
 	int reward, reward6, reward12, reward24;
 	int distance, distance6, distance12, distance24;
 	int evaluacion;
-	int marioMode;
+	int marioMode, mode6, mode12,mode24;
+	boolean down, jump, left, right, speed, up;
 
 	public Instancia() {
 		

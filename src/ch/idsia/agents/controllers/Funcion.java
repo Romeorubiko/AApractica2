@@ -383,10 +383,37 @@ public class Funcion {
 						ins.distance24 = Integer.parseInt(valor);
 						break;
 					case 28:
-						ins.marioMode = Integer.parseInt(valor);
+						ins.mode6 = Integer.parseInt(valor);
 						break;
 					case 29:
+						ins.mode12 = Integer.parseInt(valor);
+						break;
+					case 30:
+						ins.mode24 = Integer.parseInt(valor);
+						break;
+					case 31:
+						ins.marioMode = Integer.parseInt(valor);
+						break;
+					case 32:
 						ins.evaluacion = Integer.parseInt(valor);
+						break;
+					case 33:
+						ins.down = Boolean.parseBoolean(valor);
+						break;
+					case 34:
+						ins.jump = Boolean.parseBoolean(valor);
+						break;
+					case 35:
+						ins.left = Boolean.parseBoolean(valor);
+						break;
+					case 36:
+						ins.right = Boolean.parseBoolean(valor);
+						break;
+					case 37:
+						ins.speed = Boolean.parseBoolean(valor);
+						break;
+					case 38:
+						ins.up = Boolean.parseBoolean(valor);
 						break;
 					}
 					valor = "";

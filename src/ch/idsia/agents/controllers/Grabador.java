@@ -14,14 +14,7 @@ import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 
 public class Grabador {
-	
-	/*Necesita grabrt:
-	1-Toda la informacion del estado en el que se encuentra Mario en ese tick concreto.
-	2-El valor de las celdas alrededor de Mario devuelta por getMergedObservationZ(). Todas las celdas
-	deben ir en la misma lnea, sin saltos de lnea.
-	3-El numero de monedas recogidas y enemigos eliminados hace 5 ticks (aparte de incluir en la lnea tambien
-	el numero de monedas y enemigos del tick actual)
-	*/
+
 	static final String output = "ejemplo.arff";
 	static int detalle = 1;
 	static int ticks = 0;
@@ -29,11 +22,14 @@ public class Grabador {
 	
 	static Queue<Integer> hace24reward = new LinkedList<Integer>();
 	static Queue<Integer> hace24distance = new LinkedList<Integer>();
+	static Queue<Integer> hace24mode = new LinkedList<Integer>();
 	static Queue<boolean[]> action24 = new LinkedList<boolean[]>();
 	static Queue<byte[][]> hace24merge = new LinkedList<byte[][]>();
 	
+	
 	static void grabar(MarioEnvironment e, boolean[] action, FileWriter fichero) {
 		hace24reward.add(e.getIntermediateReward());
+		hace24reward.add(e.getEvaluationInfo().marioMode);
 		hace24distance.add(e.getEvaluationInfo().distancePassedCells);
 		action24.add(action.clone());
 		hace24merge.add(e.getMergedObservationZZ(detalle, detalle));
@@ -62,10 +58,7 @@ public class Grabador {
 			ins.nearestCreature = nearestCreature(temp);
 			pw.print(hace24distance.peek()+",");
 			ins.distance = hace24distance.peek();
-
-//			pw.print(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained+",");
-//			pw.print(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal+",");
-			
+		
 			pw.print(saltoSeguido+",");
 			ins.saltoSeguido = saltoSeguido;
 			
@@ -99,37 +92,29 @@ public class Grabador {
 			ins.distance24 = (int)tempList.poll();
 			hace24distance.poll();
 			
-			/*pw.print(action[Mario.KEY_LEFT]+",");
-			pw.print(action[Mario.KEY_DOWN]+",");
-			pw.print(action[Mario.KEY_SPEED]+",");
-			pw.print(action[Mario.KEY_UP]+",");*/
-			
-//			//predicciones
-//			//n+6
-//			pw.print((int)(1.0013*e.getIntermediateReward()-27.2653)+",");
-//			pw.print((int)(-3.474*(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained)
-//				-57.75*(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal)
-//				+3648.3821)+",");
-//			//n+12
-//			pw.print((int)(-3.4591*(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained)
-//			-57.6444*(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal)
-//			+3649.5482)+",");
-//			pw.print((int)((1.0013*e.getIntermediateReward()-27.2653)*0.998+10.0473)+",");
-//			//n+24
-//			pw.print((int)(1.0002*e.getIntermediateReward()-1.6031)+",");
-//			pw.print((int)(-3.192*(e.getEvaluationInfo().totalNumberOfCoins-e.getEvaluationInfo().coinsGained)
-//				-57.2895*(e.getEvaluationInfo().totalNumberOfCreatures-e.getEvaluationInfo().killsTotal)
-//				+3643.8188)+",");
-//			pw.print((int)(((1.0013*e.getIntermediateReward()-27.2653)*0.998+10.0473)*0.9948+21.1029)+",");
-//			
+			tempList = new LinkedList<>(hace24mode);
+			for (int i = 0; i < 5; i++) tempList.poll();
+			pw.print(tempList.peek()+",");
+			ins.mode6 = (int)tempList.poll();
+			for (int i = 0; i < 5; i++) tempList.poll();
+			pw.print(tempList.peek()+",");
+			ins.mode12 = (int)tempList.poll();
+			for (int i = 0; i < 11; i++) tempList.poll();
+			pw.print(tempList.peek()+",");
+			ins.mode24 = (int)tempList.poll();
+			hace24mode.poll();
+
 			pw.print(e.getMarioMode()+",");
 			
 			pw.print(Funcion.evaluacion(ins)+",");	
 			
-			if (action[Mario.KEY_RIGHT])pw.print(1);
-			else pw.print(0);
-			if (action[Mario.KEY_JUMP])pw.print(1);
-			else pw.print(0);
+			pw.print(action[Mario.KEY_DOWN]+",");
+			pw.print(action[Mario.KEY_JUMP]+",");
+			pw.print(action[Mario.KEY_LEFT]+",");
+			pw.print(action[Mario.KEY_RIGHT]+",");
+			pw.print(action[Mario.KEY_SPEED]+",");
+			pw.print(action[Mario.KEY_UP]);
+			
 			
 			if(action[Mario.KEY_JUMP])saltoSeguido++;
 			else saltoSeguido=0;
@@ -235,31 +220,26 @@ public class Grabador {
 		pw.println("@attribute nearestCoin numeric");
 		pw.println("@attribute nearestCreature numeric");
 		pw.println("@attribute distancePassedCells numeric");
-//		pw.println("@attribute coinsOnScreen numeric");
-//		pw.println("@attribute creaturesOnScreen numeric");
 		pw.println("@attribute saltoSeguido numeric");
 		pw.println("@attribute marioOnGround {true,false}");
-		/*pw.println("@attribute accion_LEFT {true,false}");
-		pw.println("@attribute accion_DOWN {true,false}");
-		pw.println("@attribute accion_SPEED {true,false}");
-		pw.println("@attribute accion_UP {true,false}");*/
 		pw.println("@attribute reward6 numeric");
 		pw.println("@attribute reward12 numeric");
 		pw.println("@attribute reward24 numeric");
 		pw.println("@attribute distance6 numeric");
 		pw.println("@attribute distance12 numeric");
 		pw.println("@attribute distance24 numeric");
-		/*pw.println("@attribute P1n6 numeric");
-		pw.println("@attribute P2n6 numeric");
-		pw.println("@attribute P2n12 numeric");
-		pw.println("@attribute P3n12 numeric");
-		pw.println("@attribute P1n24 numeric");
-		pw.println("@attribute P2n24 numeric");
-		pw.println("@attribute P3n24 numeric");*/
+		pw.println("@attribute mode6 numeric");
+		pw.println("@attribute mode12 numeric");
+		pw.println("@attribute mode24 numeric");
 		pw.println("@attribute marioMode numeric");
 		pw.println("@attribute evaluacion numeric");
+		pw.println("@attribute DOWN {true,false");
+		pw.println("@attribute JUMP {true,false");
+		pw.println("@attribute LEFT {true,false");
+		pw.println("@attribute RIGHT {true,false");
+		pw.println("@attribute SPEED {true,false");
+		pw.println("@attribute UP {true,false");
 		
-		pw.println("@attribute RIGHT_JUMP {00,01,10,11}");
 		pw.println();
 		pw.println("@data");
 		
