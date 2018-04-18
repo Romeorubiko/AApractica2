@@ -95,7 +95,7 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
        action[Mario.KEY_LEFT] = resultado.left;
        action[Mario.KEY_SPEED] = resultado.speed;
        
-       return null;
+       return action;
     
     }
     

@@ -196,9 +196,9 @@ public class Funcion {
 	de la diferencia (ya que cuanta mÃ¡s evaluaciÃ³n mejor y cuanta menos similitud mejor) entre evaluaciÃ³n
 	 y similitud */
 
-		float total1 = (posicion1.evaluacion - mejores[1]) / 2;
-		float total2 = (posicion2.evaluacion - mejores[2]) / 2;
-		float total3 = (posicion3.evaluacion - mejores[3]) / 2;
+		float total1 = (posicion1.evaluacion - mejores[0]) / 2;
+		float total2 = (posicion2.evaluacion - mejores[1]) / 2;
+		float total3 = (posicion3.evaluacion - mejores[2]) / 2;
 
 		if(total1 > total2 && total1 > total3)
 			return posicion1;
