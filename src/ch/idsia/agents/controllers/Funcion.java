@@ -422,10 +422,9 @@ public class Funcion {
 					valor = "";
 				}
 			}
-			ins.right_jump=valor;
-		
 			pertenece[pertenecia(ins)].add(ins);
 			line = br.readLine();
+			contador = 0;
 		}
 		System.out.println("¡Indexado completado!");
 		for (int i = 0; i < pertenece.length; i++) {
