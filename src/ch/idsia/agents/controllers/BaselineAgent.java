@@ -30,18 +30,39 @@ package ch.idsia.agents.controllers;
 import ch.idsia.agents.Agent;
 import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.Environment;
+import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class BaselineAgent extends BasicMarioAIAgent implements Agent {
 
     int tick;
     private Random R = null;
+    String path = "BaseLine.arff";
+    FileWriter fichero;
 
-    public BaselineAgent() {
+    public BaselineAgent() throws IOException {
         super("BaselineAgent");
         reset();
         tick = 0;
+        fichero = new FileWriter(path, true);
+        BufferedReader br = new BufferedReader(new FileReader(path));     
+	if (br.readLine() == null) {
+		
+		Grabador.cabeceraWeka(fichero ,"P2BotAgent");
+    		System.out.println("No errors, and file empty");
+	}
+	else{
+		br.close();
+		Grabador.borrarUltimaLinea(path);
+		PrintWriter pw = new PrintWriter(fichero);
+		pw.println();
+	}
     }
 
     public void reset() {
@@ -50,112 +71,8 @@ public class BaselineAgent extends BasicMarioAIAgent implements Agent {
     }
 
     public void integrateObservation(Environment environment) {
-        // IMPORTANTE: Si se utilizan métodos que tardan mucho como println, cada tick puede tardar en procesarse más de
-        // de lo que permite la competición de Mario AI. Si el agente es demasiado lento procesando y el simulador no
-        // puede funcionar en tiempo real, se cerrará automáticamente, lor lo que se insta a que el código escrito sea
-        // lo más eficiente posible.
-        
-        
-        // INFORMACION DEL ENTORNO
-        
-        // En la interfaz Environment.java vienen definidos los metodos que se pueden emplear para recuperar informacion
-        // del entorno de Mario. Algunos de los mas importantes (y que utilizaremos durante el curso)...
-
-        System.out.println("------------------ TICK " + tick + " ------------------");
-
-        /*
-        // Devuelve un array de 19x19 donde Mario ocupa la posicion 9,9 con informacion de los elementos
-        // en la escena. La funcion getLevelSceneObservationZ recibe un numero para indicar el nivel de detalle
-        // de la informacion devuelta. En uno de los anexos del tutorial 1 se puede encontrar informacion de 
-        // los niveles de detalle y el tipo de informacion devuelta.
-        System.out.println("\nESCENA");
-        byte [][] envesc;
-        envesc = environment.getLevelSceneObservationZ(1);
-        for (int mx = 0; mx < envesc.length; mx++){
-            System.out.print(mx + ": [");
-            for (int my = 0; my < envesc[mx].length; my++)
-                System.out.print(envesc[mx][my] + " ");
-
-            System.out.println("]");
-        }
-        */
-        
-        /*
-        // Devuelve un array de 19x19 donde Mario ocupa la posicion 9,9 con informacion de los enemigos
-        // en la escena. La funcion getEnemiesObservationZ recibe un numero para indicar el nivel de detalle
-        // de la informacion devuelta. En uno de los anexos del tutorial 1 se puede encontrar informacion de 
-        // los niveles de detalle y el tipo de informacion devuelta.
-        System.out.println("\nENEMIGOS");
-        byte [][] envenm;
-        envenm = environment.getEnemiesObservationZ(1);
-        for (int mx = 0; mx < envenm.length; mx++) {
-            System.out.print(mx + ": [");
-            for (int my = 0; my < envenm[mx].length; my++)
-                System.out.print(envenm[mx][my] + " ");
-            
-            System.out.println("]");
-        }
-        */
-        
-        /*
-        // Devuelve un array de 19x19 donde Mario ocupa la posicion 9,9 con la union de los dos arrays
-        // anteriores, es decir, devuelve en un mismo array la informacion de los elementos de la
-        // escena y los enemigos.
-        System.out.println("\nMERGE");
-        byte [][] env;
-        env = environment.getMergedObservationZZ(1, 1);
-        for (int mx = 0; mx < env.length; mx++) {
-            System.out.print(mx + ": [");
-            for (int my = 0; my < env[mx].length; my++)
-                System.out.print(env[mx][my] + " ");
-
-            System.out.println("]");
-        }
-        */
-
-        // Posicion de Mario utilizando las coordenadas del sistema
-        System.out.println("POSICION MARIO");
-        float[] posMario;
-        posMario = environment.getMarioFloatPos();
-        for (int mx = 0; mx < posMario.length; mx++)
-             System.out.print(posMario[mx] + " ");
-        
-        // Posicion que ocupa Mario en el array anterior
-        System.out.println("\nPOSICION MARIO MATRIZ");
-        int[] posMarioEgo;
-        posMarioEgo = environment.getMarioEgoPos();
-        for (int mx = 0; mx < posMarioEgo.length; mx++)
-             System.out.print(posMarioEgo[mx] + " ");
-        
-        
-        // Estado de mario
-        // marioStatus, marioMode, isMarioOnGround (1 o 0), isMarioAbleToJump() (1 o 0), isMarioAbleToShoot (1 o 0), 
-        // isMarioCarrying (1 o 0), killsTotal, killsByFire,  killsByStomp, killsByShell, timeLeft
-        System.out.println("\nESTADO MARIO");
-        int[] marioState;
-        marioState = environment.getMarioState();
-        for (int mx = 0; mx < marioState.length; mx++)
-             System.out.print(marioState[mx] + " ");
-        
-
-        // Mas informacion de evaluacion...
-        // distancePassedCells, distancePassedPhys, flowersDevoured, killsByFire, killsByShell, killsByStomp, killsTotal, marioMode,
-        // marioStatus, mushroomsDevoured, coinsGained, timeLeft, timeSpent, hiddenBlocksFound
-        System.out.println("\nINFORMACION DE EVALUACION");
-        int[] infoEvaluacion;
-        infoEvaluacion = environment.getEvaluationInfoAsInts();
-        for (int mx = 0; mx < infoEvaluacion.length; mx++)
-             System.out.print(infoEvaluacion[mx] + " ");
-        
-
-        // Informacion del refuerzo/puntuacion que ha obtenido Mario. Nos puede servir para determinar lo bien o mal que lo esta haciendo.
-        // Por defecto este valor engloba: reward for coins, killed creatures, cleared dead-ends, bypassed gaps, hidden blocks found
-        System.out.println("\nREFUERZO");
-        int reward = environment.getIntermediateReward();
-        System.out.print(reward);
-
-        System.out.println("\n");
         tick++;
+        Grabador.grabar((MarioEnvironment)environment, action, fichero);
     }
 
     public boolean[] getAction() {
