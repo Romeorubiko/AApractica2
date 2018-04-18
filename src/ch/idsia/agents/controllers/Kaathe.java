@@ -1,9 +1,16 @@
 package ch.idsia.agents.controllers;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import ch.idsia.agents.Agent;
 import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.Environment;
+import ch.idsia.benchmark.mario.environments.MarioEnvironment;
+
 import java.util.LinkedList;
 
 
@@ -15,10 +22,13 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
 	private Funcion funcion;
 	Instancia ins = new Instancia();
 	Instancia resultado = new Instancia();
+	String path = "P2BotAgent.txt";
+	FileWriter fichero;
+	
     public Kaathe() throws IOException{
 	        super("Kaathe");
 	        tick = 0;
-		/*fichero = new FileWriter(path, true);
+		fichero = new FileWriter(path, true);
 	        BufferedReader br = new BufferedReader(new FileReader(path));     
 		if (br.readLine() == null) {
 			
@@ -30,7 +40,7 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
 			Grabador.borrarUltimaLinea(path);
 			PrintWriter pw = new PrintWriter(fichero);
 			pw.println();
-		}*/
+		}
 
 		funcion = new Funcion();
 		funcion.indexar("input.arff");
@@ -60,7 +70,7 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
 		ins.merge5_10 = mergeObsr[5][10];
 		ins.merge5_11 = mergeObsr[5][11];
 		ins.merge5_12 = mergeObsr[5][12];
-		
+		Grabador.grabar((MarioEnvironment)environment, action, fichero);
         tick++;
     }
 
