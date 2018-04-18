@@ -31,7 +31,9 @@ public class Instancia {
 				+ ", merge6_12=" + merge6_12 + ", merge5_10=" + merge5_10 + ", merge5_11=" + merge5_11 + ", merge5_12="
 				+ merge5_12 + ", reward=" + reward + ", reward6=" + reward6 + ", reward12=" + reward12 + ", reward24="
 				+ reward24 + ", distance=" + distance + ", distance6=" + distance6 + ", distance12=" + distance12
-				+ ", distance24=" + distance24 + ", evaluacion=" + evaluacion + ", marioMode=" + marioMode + "]";
+				+ ", distance24=" + distance24 + ", evaluacion=" + evaluacion + ", marioMode=" + marioMode + ", mode6="
+				+ mode6 + ", mode12=" + mode12 + ", mode24=" + mode24 + ", down=" + down + ", jump=" + jump + ", left="
+				+ left + ", right=" + right + ", speed=" + speed + ", up=" + up + "]";
 	}
 	
 }

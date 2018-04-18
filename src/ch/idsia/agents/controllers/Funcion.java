@@ -427,7 +427,7 @@ public class Funcion {
 			pertenece[pertenecia(ins)].add(ins);
 			line = br.readLine();
 		}
-		System.out.println("ï¿½Indexado completado!");
+		System.out.println("�Indexado completado!");
 		for (int i = 0; i < pertenece.length; i++) {
 			System.out.println("Coincidencias con situacion "+i+": "+pertenece[i].size());
 		}
