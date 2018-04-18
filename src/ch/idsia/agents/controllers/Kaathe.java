@@ -91,11 +91,11 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
 
 	   resultado = funcion.similitud(ins, pertenece[situacion]);
 	   
-	   action[Mario.KEY_DOWN] = resultado.abajo;
-       action[Mario.KEY_UP] = resultado.salto;
-       action[Mario.KEY_RIGHT] = resultado.derecha;
-       action[Mario.KEY_LEFT] = resultado.izquierda;
-       action[Mario.KEY_SPEED] = resultado.velocidad;
+	   action[Mario.KEY_DOWN] = resultado.down;
+       action[Mario.KEY_UP] = resultado.jump;
+       action[Mario.KEY_RIGHT] = resultado.right;
+       action[Mario.KEY_LEFT] = resultado.left;
+       action[Mario.KEY_SPEED] = resultado.speed;
        
        return null;
     
