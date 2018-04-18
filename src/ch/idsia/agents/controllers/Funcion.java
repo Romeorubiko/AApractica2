@@ -159,7 +159,7 @@ public class Funcion {
 	/**
 	 * devuelve la situacion qeu se parezca mï¿½s en la lista que se ha pasado como parï¿½metro
 	 */
-	public Instancia similitud(Instancia ins, LinkedList<Instancia> l) {//todo
+	public Instancia similitud(Instancia ins, LinkedList<Instancia> l) {
 		Instancia[] list = l.toArray(new Instancia[l.size()]);
 
 		//Array de ints que contendrÃ¡ los valores de similitud de cada instancia de la lista con la nueva instancia
@@ -196,7 +196,7 @@ public class Funcion {
 	/*Como las instancias de la lista ya tienen un valor de evaluacion, vamos a hacer la media 
 	de la diferencia (ya que cuanta mÃ¡s evaluaciÃ³n mejor y cuanta menos similitud mejor) entre evaluaciÃ³n
 	 y similitud */
-
+/*
 		float total1 = (posicion1.evaluacion - mejores[0]) / 2;
 		float total2 = (posicion2.evaluacion - mejores[1]) / 2;
 		float total3 = (posicion3.evaluacion - mejores[2]) / 2;
@@ -206,7 +206,14 @@ public class Funcion {
 		if(total2 > total1 && total2 > total3)
 			return posicion2;
 		else
-			return posicion3;
+			return posicion3;*/
+		if((int)Math.random()*3 == 2) {
+			return posicion1;
+		}
+		if((int)Math.random()*3 == 2) {
+			return posicion2;
+		}
+		return posicion3;
 	}
 
 	//Funcion que devuelve la posición del mayor número
