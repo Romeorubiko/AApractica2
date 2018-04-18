@@ -87,7 +87,7 @@ public class Kaathe extends BasicMarioAIAgent implements Agent {
 		
 		int situacion = funcion.pertenecia(ins);
 
-	   resultado = funcion.similitud(ins, (Instancia[])funcion.pertenece[situacion].toArray());
+	   resultado = funcion.similitud(ins,funcion.pertenece[situacion]);
 	   
 	   action[Mario.KEY_DOWN] = resultado.down;
        action[Mario.KEY_UP] = resultado.jump;

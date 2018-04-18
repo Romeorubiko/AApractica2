@@ -159,8 +159,8 @@ public class Funcion {
 	/**
 	 * devuelve la situacion qeu se parezca mï¿½s en la lista que se ha pasado como parï¿½metro
 	 */
-	public Instancia similitud(Instancia ins, Instancia[] list) {//todo
-
+	public Instancia similitud(Instancia ins, LinkedList<Instancia> l) {//todo
+		Instancia[] list = (Instancia[]) l.toArray();
 		//Array de ints que contendrÃ¡ los valores de similitud de cada instancia de la lista con la nueva instancia
 		float valores[] = new float [list.length];
 		//Variables donde vamos a guardar la posiciÃ³n en la lista de la instancia mÃ¡s parecÃ­a
