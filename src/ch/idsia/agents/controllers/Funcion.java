@@ -12,7 +12,7 @@ public class Funcion {
 	
 	public Funcion() {
 		//initSituaciones();
-		//pertenece = new LinkedList[4];
+		pertenece = new LinkedList[4];
 		for (int i = 0; i < pertenece.length; i++) {
 			pertenece[i] = new LinkedList<Instancia>();
 		}
