@@ -78,6 +78,7 @@ int zLevelEnemies = 0;
 public BasicMarioAIAgent(String s)
 {
     setName(s);
+    ç
 }
 
 public boolean[] getAction()
