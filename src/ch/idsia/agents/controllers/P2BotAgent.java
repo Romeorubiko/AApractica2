@@ -61,10 +61,10 @@ public class P2BotAgent extends BasicMarioAIAgent implements Agent {
     private Funcion funcion;
 
     public P2BotAgent() throws IOException{
-	        super("P2BotAgent");
-	        tick = 0;
+        super("P2BotAgent");
+        tick = 0;
 		fichero = new FileWriter(path, true);
-	        BufferedReader br = new BufferedReader(new FileReader(path));     
+	    BufferedReader br = new BufferedReader(new FileReader(path));     
 		if (br.readLine() == null) {
 			
 			Grabador.cabeceraWeka(fichero ,"P2BotAgent");

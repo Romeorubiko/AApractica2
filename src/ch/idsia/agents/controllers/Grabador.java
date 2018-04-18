@@ -29,7 +29,7 @@ public class Grabador {
 	
 	static void grabar(MarioEnvironment e, boolean[] action, FileWriter fichero) {
 		hace24reward.add(e.getIntermediateReward());
-		hace24reward.add(e.getEvaluationInfo().marioMode);
+		hace24mode.add(e.getEvaluationInfo().marioMode);
 		hace24distance.add(e.getEvaluationInfo().distancePassedCells);
 		action24.add(action.clone());
 		hace24merge.add(e.getMergedObservationZZ(detalle, detalle));
